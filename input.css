@@ -1,0 +1,10 @@
+/* Este es tu archivo CSS de entrada */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos personalizados adicionales */
+body {
+  /* Asegura que los campos de fecha en modo oscuro sean legibles */
+  color-scheme: dark;
+}
