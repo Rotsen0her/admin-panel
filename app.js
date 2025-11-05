@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         activeLink.classList.add('bg-blue-600', 'text-white', 'font-semibold');
         activeLink.classList.remove('hover:bg-gray-800');
     }
-
+x   
     document.getElementById('link-crear').addEventListener('click', (e) => {
         e.preventDefault();
         showView('view-crear');
