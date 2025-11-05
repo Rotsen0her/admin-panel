@@ -21,6 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
+    // === Función para agregar usuario ===
+    function agregarUsuario(usuario) {
+        usuarios.push(usuario);
+        renderUsers();
+    }
+
     const views = document.querySelectorAll('.view-content');
     const navLinks = document.querySelectorAll('.nav-link');
     
@@ -79,6 +85,27 @@ x
 
     // Renderizar usuarios al cargar la página
     renderUsers();
+
+    // === Manejar envío del formulario de crear usuario ===
+    const formCrear = document.querySelector('#view-crear form');
+    formCrear.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const nuevoUsuario = {
+            id: document.getElementById('id').value,
+            nombres: document.getElementById('nombres').value,
+            apellidos: document.getElementById('apellidos').value,
+            email: document.getElementById('email').value,
+            genero: document.getElementById('genero').value
+        };
+        
+        agregarUsuario(nuevoUsuario);
+        formCrear.reset(); // Limpiar formulario
+        
+        // Cambiar a vista de listado para ver el nuevo usuario
+        showView('view-listado');
+        setActiveLink(document.getElementById('link-listado'));
+    });
 
     function closeMobileMenu() {
         sidebar.classList.add('-translate-x-full');
