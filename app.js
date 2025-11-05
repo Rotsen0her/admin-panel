@@ -1,13 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // === Array de usuarios ===
-    const usuarios = [
-        { id: '12345678', nombres: 'Juan', apellidos: 'Pérez', email: 'juan.perez@email.com', genero: 'Masculino' },
-        { id: '87654321', nombres: 'Ana', apellidos: 'García', email: 'ana.garcia@email.com', genero: 'Femenino' },
-        { id: '11223344', nombres: 'Luis', apellidos: 'Martinez', email: 'luis.martinez@email.com', genero: 'Masculino' }
-    ];
+   const usuarios = [];
 
-    // === Función para renderizar tabla de usuarios ===
     function renderUsers() {
         const tbody = document.querySelector('#view-listado tbody');
         tbody.innerHTML = usuarios.map(u => `
@@ -21,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    // === Función para agregar usuario ===
     function agregarUsuario(usuario) {
         usuarios.push(usuario);
         renderUsers();
@@ -50,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         activeLink.classList.add('bg-blue-600', 'text-white', 'font-semibold');
         activeLink.classList.remove('hover:bg-gray-800');
     }
-x   
+   
     document.getElementById('link-crear').addEventListener('click', (e) => {
         e.preventDefault();
         showView('view-crear');
@@ -62,7 +55,7 @@ x
         e.preventDefault();
         showView('view-listado');
         setActiveLink(e.currentTarget);
-        renderUsers(); // Renderizar usuarios al mostrar vista
+        renderUsers(); 
         closeMobileMenu();
     });
 
@@ -83,10 +76,8 @@ x
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const sidebar = document.getElementById('sidebar');
 
-    // Renderizar usuarios al cargar la página
     renderUsers();
 
-    // === Manejar envío del formulario de crear usuario ===
     const formCrear = document.querySelector('#view-crear form');
     formCrear.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -100,9 +91,8 @@ x
         };
         
         agregarUsuario(nuevoUsuario);
-        formCrear.reset(); // Limpiar formulario
+        formCrear.reset(); 
         
-        // Cambiar a vista de listado para ver el nuevo usuario
         showView('view-listado');
         setActiveLink(document.getElementById('link-listado'));
     });
