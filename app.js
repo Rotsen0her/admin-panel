@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-   const usuarios = [];
+    const usuarios = [];
 
-    function renderUsers() {
+    function mostrarUsuarios() {
         const tbody = document.querySelector('#view-listado tbody');
         tbody.innerHTML = usuarios.map(u => `
             <tr class="hover:bg-gray-800/50 transition-colors">
@@ -17,69 +17,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function agregarUsuario(usuario) {
         usuarios.push(usuario);
-        renderUsers();
+        mostrarUsuarios();
     }
 
-    const views = document.querySelectorAll('.view-content');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const vistas = document.querySelectorAll('.view-content');
+    const enlacesNav = document.querySelectorAll('.nav-link');
     
-    function showView(viewId) {
-        views.forEach(view => {
-            view.classList.add('hidden');
+    function mostrarVista(idVista) {
+        vistas.forEach(vista => {
+            vista.classList.add('hidden');
         });
         
-        const targetView = document.getElementById(viewId);
-        if (targetView) {
-            targetView.classList.remove('hidden');
+        const vistaObjetivo = document.getElementById(idVista);
+        if (vistaObjetivo) {
+            vistaObjetivo.classList.remove('hidden');
         }
     }
 
-    function setActiveLink(activeLink) {
-        navLinks.forEach(link => {
-            link.classList.remove('bg-blue-600', 'text-white', 'font-semibold');
-            link.classList.add('hover:bg-gray-800');
+    function establecerEnlaceActivo(enlaceActivo) {
+        enlacesNav.forEach(enlace => {
+            enlace.classList.remove('bg-blue-600', 'text-white', 'font-semibold');
+            enlace.classList.add('hover:bg-gray-800');
         });
         
-        activeLink.classList.add('bg-blue-600', 'text-white', 'font-semibold');
-        activeLink.classList.remove('hover:bg-gray-800');
+        enlaceActivo.classList.add('bg-blue-600', 'text-white', 'font-semibold');
+        enlaceActivo.classList.remove('hover:bg-gray-800');
     }
    
     document.getElementById('link-crear').addEventListener('click', (e) => {
         e.preventDefault();
-        showView('view-crear');
-        setActiveLink(e.currentTarget);
-        closeMobileMenu();
+        mostrarVista('view-crear');
+        establecerEnlaceActivo(e.currentTarget);
+        cerrarMenuMovil();
     });
 
     document.getElementById('link-listado').addEventListener('click', (e) => {
         e.preventDefault();
-        showView('view-listado');
-        setActiveLink(e.currentTarget);
-        renderUsers(); 
-        closeMobileMenu();
+        mostrarVista('view-listado');
+        establecerEnlaceActivo(e.currentTarget);
+        mostrarUsuarios(); 
+        cerrarMenuMovil();
     });
 
     document.getElementById('link-buscar').addEventListener('click', (e) => {
         e.preventDefault();
-        showView('view-buscar');
-        setActiveLink(e.currentTarget);
-        closeMobileMenu();
+        mostrarVista('view-buscar');
+        establecerEnlaceActivo(e.currentTarget);
+        cerrarMenuMovil();
     });
 
     document.getElementById('link-proyectos').addEventListener('click', (e) => {
         e.preventDefault();
-        showView('view-proyectos');
-        setActiveLink(e.currentTarget);
-        closeMobileMenu();
+        mostrarVista('view-proyectos');
+        establecerEnlaceActivo(e.currentTarget);
+        cerrarMenuMovil();
     });
 
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const sidebar = document.getElementById('sidebar');
+    const botonMenuMovil = document.getElementById('mobile-menu-button');
+    const barraLateral = document.getElementById('sidebar');
 
-    renderUsers();
+    mostrarUsuarios();
 
-    const formCrear = document.querySelector('#view-crear form');
-    formCrear.addEventListener('submit', (e) => {
+    const formulario = document.querySelector('#view-crear form');
+    formulario.addEventListener('submit', (e) => {
         e.preventDefault();
         
         const nuevoUsuario = {
@@ -91,24 +91,24 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         
         agregarUsuario(nuevoUsuario);
-        formCrear.reset(); 
+        formularioCrear.reset(); 
         
-        showView('view-listado');
-        setActiveLink(document.getElementById('link-listado'));
+        mostrarVista('view-listado');
+        establecerEnlaceActivo(document.getElementById('link-listado'));
     });
 
-    function closeMobileMenu() {
-        sidebar.classList.add('-translate-x-full');
+    function cerrarMenuMovil() {
+        barraLateral.classList.add('-translate-x-full');
     }
 
-    mobileMenuButton.addEventListener('click', () => {
-        sidebar.classList.toggle('-translate-x-full');
+    botonMenuMovil.addEventListener('click', () => {
+        barraLateral.classList.toggle('-translate-x-full');
     });
 
     document.addEventListener('click', (e) => {
-        if (!sidebar.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-            if (!sidebar.classList.contains('-translate-x-full')) {
-                closeMobileMenu();
+        if (!barraLateral.contains(e.target) && !botonMenuMovil.contains(e.target)) {
+            if (!barraLateral.classList.contains('-translate-x-full')) {
+                cerrarMenuMovil();
             }
         }
     });
