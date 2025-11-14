@@ -16,17 +16,11 @@
             <h1 class="text-2xl font-semibold mb-8 text-white pl-8">Admin Panel</h1>
 
             <nav class="space-y-1">
-                <a href="#" id="link-crear" class="nav-link block py-2.5 px-3 rounded-md bg-blue-600 text-white font-medium text-sm">
-                    Crear usuarios
-                </a>
-                <a href="#" id="link-listado" class="nav-link block py-2.5 px-3 rounded-md hover:bg-gray-800 transition-colors text-sm">
-                    Listado de usuarios
-                </a>
-                <a href="#" id="link-buscar" class="nav-link block py-2.5 px-3 rounded-md hover:bg-gray-800 transition-colors text-sm">
-                    Buscar usuarios
+                <a href="#" id="link-usuarios" class="nav-link block py-2.5 px-3 rounded-md bg-blue-600 text-white font-medium text-sm">
+                    Usuarios
                 </a>
                 <a href="#" id="link-proyectos" class="nav-link block py-2.5 px-3 rounded-md hover:bg-gray-800 transition-colors text-sm">
-                    Gestionar proyectos
+                    Proyectos
                 </a>
             </nav>
         </aside>
@@ -39,50 +33,41 @@
 
     <main class="flex-1 min-w-0 p-6 pl-16 md:pl-8 md:p-8 md:ml-64">
             
-            <section id="view-crear" class="view-content">
-                <h2 class="text-2xl font-semibold mb-6 text-white">Crear Nuevo Usuario</h2>
-                <form class="bg-gray-900 p-6 rounded-lg border border-gray-800 max-w-2xl">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- VISTA: USUARIOS -->
+            <section id="view-usuarios" class="view-content">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-semibold text-white">Gestión de Usuarios</h2>
+                    <button id="btn-abrir-modal-usuario" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors text-sm">
+                        + Nuevo Usuario
+                    </button>
+                </div>
+
+                <!-- Filtros y Búsqueda -->
+                <div class="bg-gray-900 p-4 rounded-lg border border-gray-800 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                         <div>
-                            <label for="id" class="block text-sm font-medium text-gray-400 mb-1.5">Identificación</label>
-                            <input type="text" id="id" name="id" class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                            <label for="buscar-usuario" class="block text-xs text-gray-400 mb-1">Buscar por identificación</label>
+                            <input type="text" id="buscar-usuario" placeholder="Ingresa ID..." class="w-full bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
                         </div>
                         <div>
-                            <label for="nombres" class="block text-sm font-medium text-gray-400 mb-1.5">Nombres</label>
-                            <input type="text" id="nombres" name="nombres" class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label for="apellidos" class="block text-sm font-medium text-gray-400 mb-1.5">Apellidos</label>
-                            <input type="text" id="apellidos" name="apellidos" class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label for="fecha_nacimiento" class="block text-sm font-medium text-gray-400 mb-1.5">Fecha de nacimiento</label>
-                            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label for="genero" class="block text-sm font-medium text-gray-400 mb-1.5">Género</label>
-                            <select id="genero" name="genero" class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
-                                <option>Masculino</option>
-                                <option>Femenino</option>
-                                <option>Otro</option>
-                                <option>Prefiero no decirlo</option>
+                            <label for="filtro-genero" class="block text-xs text-gray-400 mb-1">Filtrar por género</label>
+                            <select id="filtro-genero" class="w-full bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                                <option value="">Todos</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Otro">Otro</option>
+                                <option value="Prefiero no decirlo">Prefiero no decirlo</option>
                             </select>
                         </div>
-                        <div class="md:col-span-2">
-                            <label for="email" class="block text-sm font-medium text-gray-400 mb-1.5">Email</label>
-                            <input type="email" id="email" name="email" class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                        <div class="flex items-end">
+                            <button id="btn-limpiar-filtros-usuarios" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-md transition-colors text-sm">
+                                Limpiar Filtros
+                            </button>
                         </div>
                     </div>
-                    <div class="mt-6 flex justify-end">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors text-sm">
-                            Guardar Usuario
-                        </button>
-                    </div>
-                </form>
-            </section>
+                </div>
 
-            <section id="view-listado" class="view-content hidden">
-                <h2 class="text-2xl font-semibold mb-6 text-white">Listado de Usuarios</h2>
+                <!-- Tabla de Usuarios -->
                 <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 overflow-x-auto">
                     <table class="w-full min-w-max text-sm">
                         <thead class="bg-gray-800 border-b border-gray-700">
@@ -92,68 +77,173 @@
                                 <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Apellidos</th>
                                 <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Email</th>
                                 <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Género</th>
+                                <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Proyectos</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-800">
+                        <tbody id="tabla-usuarios-body" class="divide-y divide-gray-800">
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <section id="view-buscar" class="view-content hidden">
-                <h2 class="text-2xl font-semibold mb-6 text-white">Buscar Usuarios</h2>
-                
-                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 mb-6">
-                    <form class="flex flex-col md:flex-row gap-3 items-center">
-                        <div class="flex-1 w-full">
-                            <label for="search_term" class="sr-only">Término de búsqueda</label>
-                            <input type="text" id="search_term" name="search_term" placeholder="Buscar..." class="w-full bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
-                        </div>
-                        <div class="flex-1 w-full">
-                            <label for="search_field" class="sr-only">Buscar en</label>
-                            <select id="search_field" name="search_field" class="w-full bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
-                                <option value="id">Identificación</option>
-                                <option value="nombres">Nombres</option>
-                                <option value="apellidos">Apellidos</option>
-                                <option value="email">Email</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors text-sm">
-                            Buscar
-                        </button>
-                    </form>
-                </div>
-
-                <h3 class="text-xl font-semibold mb-4 text-white">Resultados de la Búsqueda</h3>
-                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 overflow-x-auto">
-                    <table class="w-full min-w-max text-sm">
-                        <thead class="bg-gray-800 border-b border-gray-700">
-                            <tr>
-                                <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Identificación</th>
-                                <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Nombres</th>
-                                <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Apellidos</th>
-                                <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Email</th>
-                                <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Género</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-800">
-                            <tr>
-                                <td colspan="5" class="px-4 py-4 text-center text-gray-500 text-sm">No se encontraron resultados</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
+            <!-- VISTA: PROYECTOS -->
             <section id="view-proyectos" class="view-content hidden">
-                <h2 class="text-2xl font-semibold mb-6 text-white">Gestionar Proyectos</h2>
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-semibold text-white">Gestión de Proyectos</h2>
+                    <button id="btn-abrir-modal-proyecto" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors text-sm">
+                        + Nuevo Proyecto
+                    </button>
+                </div>
+
+                <!-- Filtros y Búsqueda -->
+                <div class="bg-gray-900 p-4 rounded-lg border border-gray-800 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div>
+                            <label for="buscar-proyecto" class="block text-xs text-gray-400 mb-1">Buscar por nombre o ID</label>
+                            <input type="text" id="buscar-proyecto" placeholder="Ingresa nombre o ID..." class="w-full bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="filtro-estado" class="block text-xs text-gray-400 mb-1">Filtrar por estado</label>
+                            <select id="filtro-estado" class="w-full bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                                <option value="">Todos</option>
+                                <option value="Activo">Activo</option>
+                                <option value="En pausa">En pausa</option>
+                                <option value="Completado">Completado</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end">
+                            <button id="btn-limpiar-filtros-proyectos" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-md transition-colors text-sm">
+                                Limpiar Filtros
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabla de Proyectos -->
                 <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 overflow-x-auto">
-                    <div class="mb-6">
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors text-sm">
-                            Crear Nuevo Proyecto
-                        </button>
+                    <table class="w-full min-w-max text-sm">
+                        <thead class="bg-gray-800 border-b border-gray-700">
+                            <tr>
+                                <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">ID</th>
+                                <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Nombre</th>
+                                <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Estado</th>
+                                <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Fecha Inicio</th>
+                                <th class="px-4 py-2.5 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Usuarios Asignados</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-proyectos-body" class="divide-y divide-gray-800">
+                        </tbody>
+                    </table>
+                </div>
             </section>
         </main>
+
+        <!-- MODAL: CREAR USUARIO -->
+        <div id="modal-usuario" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-gray-900 rounded-lg border border-gray-800 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="sticky top-0 bg-gray-900 border-b border-gray-800 p-6 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-white">Crear Nuevo Usuario</h3>
+                    <button id="btn-cerrar-modal-usuario" class="text-gray-400 hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="p-6">
+                    <form id="form-crear-usuario">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="id" class="block text-sm font-medium text-gray-400 mb-1.5">Identificación</label>
+                                <input type="text" id="id" name="id" required class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="nombres" class="block text-sm font-medium text-gray-400 mb-1.5">Nombres</label>
+                                <input type="text" id="nombres" name="nombres" required class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="apellidos" class="block text-sm font-medium text-gray-400 mb-1.5">Apellidos</label>
+                                <input type="text" id="apellidos" name="apellidos" required class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="genero" class="block text-sm font-medium text-gray-400 mb-1.5">Género</label>
+                                <select id="genero" name="genero" required class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                                    <option>Masculino</option>
+                                    <option>Femenino</option>
+                                    <option>Otro</option>
+                                    <option>Prefiero no decirlo</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="email" class="block text-sm font-medium text-gray-400 mb-1.5">Email</label>
+                                <input type="email" id="email" name="email" required class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                            </div>
+                        </div>
+                        <div class="mt-6 flex justify-end gap-3">
+                            <button type="button" id="btn-cancelar-usuario" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-6 rounded-md transition-colors text-sm">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors text-sm">
+                                Guardar Usuario
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL: CREAR PROYECTO -->
+        <div id="modal-proyecto" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-gray-900 rounded-lg border border-gray-800 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="sticky top-0 bg-gray-900 border-b border-gray-800 p-6 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-white">Crear Nuevo Proyecto</h3>
+                    <button id="btn-cerrar-modal-proyecto" class="text-gray-400 hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="p-6">
+                    <form id="form-crear-proyecto">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="id-proyecto" class="block text-sm font-medium text-gray-400 mb-1.5">ID Proyecto</label>
+                                <input type="text" id="id-proyecto" name="id-proyecto" required class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="nombre-proyecto" class="block text-sm font-medium text-gray-400 mb-1.5">Nombre</label>
+                                <input type="text" id="nombre-proyecto" name="nombre-proyecto" required class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="estado-proyecto" class="block text-sm font-medium text-gray-400 mb-1.5">Estado</label>
+                                <select id="estado-proyecto" name="estado-proyecto" required class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                                    <option>Activo</option>
+                                    <option>En pausa</option>
+                                    <option>Completado</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="fecha-proyecto" class="block text-sm font-medium text-gray-400 mb-1.5">Fecha de Inicio</label>
+                                <input type="date" id="fecha-proyecto" name="fecha-proyecto" required class="w-full max-w-full min-w-0 bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="usuarios-proyecto" class="block text-sm font-medium text-gray-400 mb-1.5">Usuarios Asignados (mantén Ctrl para seleccionar varios)</label>
+                                <select id="usuarios-proyecto" name="usuarios-proyecto" multiple class="w-full bg-gray-800 border border-gray-700 text-white rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:outline-none h-32">
+                                    <!-- Se llenará dinámicamente con JavaScript -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex justify-end gap-3">
+                            <button type="button" id="btn-cancelar-proyecto" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-6 rounded-md transition-colors text-sm">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors text-sm">
+                                Guardar Proyecto
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="./app.js"></script>
